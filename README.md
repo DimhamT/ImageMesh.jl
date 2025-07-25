@@ -29,11 +29,12 @@ img2mesh(infile, outfile)
 
 ### Input Image
 
-![Input Image](demo/original.jpg)
+<img src="demo/original.jpg" alt="Input Image" width="300"/>
 
 ### Generated Mesh Output
 
-![Generated Mesh](demo/mesh.png)
+<img src="demo/mesh.png" alt="Generated Mesh" width="300"/>
+
 
 ## Notes
 
