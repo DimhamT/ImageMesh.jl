@@ -3,6 +3,11 @@ uuid = "62128167-ed33-4e32-8b8c-a388d74d68c9"
 authors = ["dhtan <dinghangtan@gmail.com> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+CairoMakie = "13f3f980-e62b-5c42-98c6-ff1f3baf88f0"
+Gridap = "56d4f2e9-7ea1-5844-9cf6-b9c51ca7ce8e"
+Images = "916415d5-f1e6-5110-898d-aaa5f9f070e0"
+
 [compat]
 julia = "1.6.7"
 
