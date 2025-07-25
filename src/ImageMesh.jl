@@ -11,7 +11,35 @@ using Gridap.Arrays
 
 export img2mesh
 
-function img2mesh(imgfile::String,outfile::String=_default_output_path(imgfile); 
+"""
+    img2mesh(imgfile::String,[outfile::String]; kwargs...)
+
+Converts an input image into a colorful simplicial mesh and saves the result to a file.
+
+# Arguments
+- `imgfile::String`: Path to the input image file.
+- `outfile::String`: Path to save the output mesh image. Defaults to a derived path based on `imgfile`.
+- `resolution=nothing`: Target resolution of the output image mesh. If not provided, it is calculated based on the aspect ratio of the input image.
+- `base::Int`: Base scaling factor for the mesh grid. Default is 1.
+- `levels::AbstractVector{Int}`: A vector of refinement levels for mesh generation. Each level determines the triangle size (smaller values produce finer meshes).
+- `counts::AbstractVector{Int}`: A vector specifying how many times to apply refinement at each level. Must align with `levels`.
+
+# Workflow
+1. Loads the input image and optionally resizes it to the specified resolution.
+2. Converts the image to grayscale for mesh generation.
+3. Creates an initial Cartesian grid model and refines it into a simplicial mesh using the **Longest-edge bisection** algorithm.
+4. Iteratively applies mesh refinement based on the `levels` and `counts` parameters.
+5. Computes the color of each mesh edge based on the original image.
+6. Uses CairoMakie to plot the mesh and saves the result to the output file.
+
+# Example Usage
+```julia
+img2mesh("input.jpg", "output.png"; resolution=(800, 600), levels=[256, 128, 64], counts=[1, 2, 1])
+```
+"""
+function img2mesh(
+  imgfile::String,
+  outfile::String=_default_output_path(imgfile); 
   resolution=nothing, 
   base::Int=1,
   levels::AbstractVector{Int}=[256, 221, 181, 141, 101, 66, 36, 16],
